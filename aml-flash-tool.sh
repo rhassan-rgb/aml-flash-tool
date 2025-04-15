@@ -10,7 +10,7 @@ efuse_file=
 password=
 destroy=
 update_return=
-debug=0
+debug=1
 simu=0
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -113,7 +113,14 @@ run_update()
     run_update_return "$@"
 
     if `echo $update_return | grep -q "ERR"`; then
-       ret=1
+      if  `echo $update_return | grep -q "but -110"`; then
+         while  `echo $update_return | grep -q "but -110"`; do
+            echo "timeout.. trying again..."
+            run_update_return "$@"
+         done
+      else 
+         ret=1
+      fi
     fi
 
     return $ret

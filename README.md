@@ -2,6 +2,13 @@
 
 This is the flash-tool for Amlogic platforms.
 
+## This fork
+- Made the flashing verbose by default 
+- Keep trying when writing uboot fails
+   - for some reason the update tool keeps track of which data has been sent and which not. The seq numer gets increased anyway  but the dataSize and offset remain the same.
+
+It's a dirty fix but it gets the job done!
+
 ----------------------------
 
 ## Support list
